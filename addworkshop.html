@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add Worskshops</title>
+  <script>
+      function includeHTML() {
+        var z, i, elmnt, file, xhttp;
+        /*loop through a collection of all HTML elements:*/
+        z = document.getElementsByTagName("*");
+        for (i = 0; i < z.length; i++) {
+          elmnt = z[i];
+          /*search for elements with a certain atrribute:*/
+          file = elmnt.getAttribute("w3-include-html");
+          if (file) {
+            /*make an HTTP request using the attribute value as the file name:*/
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4) {
+                if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                /*remove the attribute, and call this function once more:*/
+                elmnt.removeAttribute("w3-include-html");
+                includeHTML();
+              }
+            }      
+            xhttp.open("GET", file, true);
+            xhttp.send();
+            /*exit the function:*/
+            return;
+          }
+        }
+      };
+      </script>
+
+      <style>
+        /** {
+            box-sizing: border-box;
+        }*/
+        
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        
+        label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+        }
+        
+        input[type=submit] {
+            background-color: rgb(106, 76, 175);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+        
+        input[type=submit]:hover {
+            background-color: #6a54e7a4;
+        }
+        
+        .container {
+            margin-top:-72%;
+            border-radius: 5px;
+            background-color: #f2f2f24b;
+            padding: 20px;
+        }
+        
+        .col-25 {
+            float: left;
+            width: 12%;
+            margin-top: 6px;
+        }
+        
+        .col-75 {
+            float: left;
+            width: 86%;
+            margin-top: 6px;
+        }
+        
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        @media screen and (max-width: 600px) {
+            .col-25, .col-75, input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+            }
+        }
+        </style>
+</head>
+
+    
+
+<body style="background-color: lightpink;">      
+    <div w3-include-html="base.html"></div> 
+    <script> includeHTML(); </script>  
+
+    <div class="main">
+      <div class="container">
+          <form method="post" action="add_data.php">
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="wtitle">Workshop title</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="wtitle" name="wtitle" placeholder="Enter the workshop title..">
+            </div>
+          </div>
+          
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="description">Description</label>
+            </div>
+            <div class="col-75">
+              <textarea id="description" name="description" placeholder="Write about the workshop..." style="height:200px"></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label for="department">Department</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="department" name="department" placeholder="Enter department shortforms (BT,CS,EC,PROD,AUTO,MECH)">
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="col-25">
+                <label for="organisation">Organisation</label>
+              </div>
+              <div class="col-75">
+                <input type="text" id="organisation" name="organisation">
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-25">
+                <label for="venue">Venue</label>
+              </div>
+              <div class="col-75">
+                <input type="text" id="venue" name="venue">
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-25">
+                <label for="date">Date</label>
+              </div>
+              <div class="col-75">
+                <input type="text" id="date" name="date" placeholder="YYYY-MM-DD">
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-25">
+                <label for="time">Time</label>
+              </div>
+              <div class="col-75">
+                <input type="text" id="time" name="time">
+              </div>
+          </div>
+
+
+          <div class="row">
+            <input type="submit" value="Submit">
+          </div>
+          </form>
+      </div>
+            
+
+
+
+
+    </div>
+    <style>
+        .main{
+                margin:0 auto;
+                width:1335px;
+        }                
+    </style>
+     
+</body>
+</html>     
+

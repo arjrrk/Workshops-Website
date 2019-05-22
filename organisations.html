@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Organisations</title>
+  <script>
+      function includeHTML() {
+        var z, i, elmnt, file, xhttp;
+        /*loop through a collection of all HTML elements:*/
+        z = document.getElementsByTagName("*");
+        for (i = 0; i < z.length; i++) {
+          elmnt = z[i];
+          /*search for elements with a certain atrribute:*/
+          file = elmnt.getAttribute("w3-include-html");
+          if (file) {
+            /*make an HTTP request using the attribute value as the file name:*/
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4) {
+                if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                /*remove the attribute, and call this function once more:*/
+                elmnt.removeAttribute("w3-include-html");
+                includeHTML();
+              }
+            }      
+            xhttp.open("GET", file, true);
+            xhttp.send();
+            /*exit the function:*/
+            return;
+          }
+        }
+      };
+    </script>
+    <style>
+            .orgs{
+                margin-top:-70%;
+            }
+            .orgs button {
+                margin:0 auto;
+                background-color: rgb(95, 0, 124); 
+                border: 1px solid rgb(235, 132, 248); 
+                color: white; 
+                padding: 10px 24px; 
+                cursor: pointer; 
+                width: 20%; 
+                display: block; 
+            }
+            
+            .orgs button:not(:last-child) {
+                border-bottom: none; 
+            }
+            
+            
+            .orgs button:hover {
+                background-color: #8e3e83;
+            }
+    </style>
+</head>
+ 
+ <body style="background-color: lightpink;">      
+        <div w3-include-html="base.html"></div> 
+        <script> includeHTML(); </script>  
+        <div class="main">
+            <div class="orgs">
+                    <a href="edc.php"><button>EDC</button></a>
+                    <a href="ieee.php"><button>IEEE</button></a>
+                    <a href="lanscape.php"><button>LANSCAPE</button></a>
+                    <a href="others.php"><button>OTHERS</button></a>
+            </div>
+
+        </div>
+        <style>
+                .main{
+                        margin:0 auto;
+                        width:1335px;
+                }                
+        </style>
+</body>
